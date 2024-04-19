@@ -75,4 +75,19 @@ describe("<TodoListView />", () => {
           expect(removeButton).toBeInTheDocument();
         });
     })
+
+    describe("the Delete Button", () => {
+      it("should remove the todo", () => {
+        render(<TodoListView />);
+        const inputElement = screen.getByTestId('todo-input');
+        const submitButton = screen.getByTestId("submit-button");
+
+        fireEvent.change(inputElement, { target: { value: 'New Todo Item' } });
+        fireEvent.click(submitButton);
+
+        const removeButton = screen.getByText("Remove");
+        fireEvent.click(removeButton)
+        expect(screen.queryByText('New Todo Item')).not.toBeInTheDocument()
+      });
+    })
 });

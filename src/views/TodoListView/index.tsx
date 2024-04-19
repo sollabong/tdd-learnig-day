@@ -13,6 +13,11 @@ export const TodoListView = () => {
       const newTodo = e.target.value;
       setTodo(newTodo);
     }
+
+    const deleteTodo = (index: number) => {
+        const newTodos = todos.filter((_todo, i) => i !== index)
+        setTodos(newTodos);
+    }
     
     return (
         <div data-testid="todo-list-view">
@@ -25,7 +30,7 @@ export const TodoListView = () => {
                 <li key={index}>
                   <div>
                     {todo}
-                    <button>Remove</button>
+                    <button onClick={() => deleteTodo(index)}>Remove</button>
                   </div>
                 </li>
               ))}
