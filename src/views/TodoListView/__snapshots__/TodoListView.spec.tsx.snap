@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<TodoListView /> should render view 1`] = `
+<div
+  data-testid="todo-list-view"
+>
+  <h1>
+    Todo List View
+  </h1>
+</div>
+`;
