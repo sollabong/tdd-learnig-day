@@ -7,5 +7,17 @@ exports[`<TodoListView /> should render view 1`] = `
   <h1>
     Todo List View
   </h1>
+  <input
+    data-testid="todo-input"
+    type="text"
+  />
+  <button
+    data-testid="submit-button"
+  >
+    Submit
+  </button>
+  <div
+    data-testid="todo-list"
+  />
 </div>
 `;
