@@ -10,6 +10,7 @@ exports[`<TodoListView /> should render view 1`] = `
   <input
     data-testid="todo-input"
     type="text"
+    value=""
   />
   <button
     data-testid="submit-button"
@@ -18,6 +19,8 @@ exports[`<TodoListView /> should render view 1`] = `
   </button>
   <div
     data-testid="todo-list"
-  />
+  >
+    <ul />
+  </div>
 </div>
 `;

@@ -2,11 +2,7 @@
 import React from 'react';
 import {TodoListView} from './index'
 import { fireEvent, render, screen } from "@testing-library/react";
-// describe("<TodoListView />", () => {
-//     it("should render view", () => {
-//         throw Error("Not implemented");
-//     });
-// });
+import { useState } from 'react';
 
 describe("<TodoListView />", () => {
     it("should render view", () => {
@@ -28,15 +24,55 @@ describe("<TodoListView />", () => {
     });
 
     describe("the Submit Button", () => {
-        it("should update todos state on click", () => {
+        it("should add new todo item on submit-button click", () => {
+          render(<TodoListView />);
+          const inputElement = screen.getByTestId('todo-input');
+          const submitButton = screen.getByTestId("submit-button");
+
+          fireEvent.change(inputElement, { target: { value: 'New Todo Item' } });
+          fireEvent.click(submitButton);
+
+          expect(screen.getByText('New Todo Item')).toBeInTheDocument();
+
+          /*
+          const useStateSpy = jest.spyOn(React, 'useState');
+          useStateSpy.mockReturnValueOnce([['New Todo'], jest.fn()]);
+          render(<TodoListView />);
+
+          const submitButton = screen.getByTestId("submit-button");
+          fireEvent.click(submitButton);
+
+          expect(useStateSpy).toHaveBeenCalled();
+          expect(useStateSpy).toHaveBeenCalledWith('New Todo');
+          */
+          /*
+          const setState = jest.fn();
+          jest.spyOn(React, 'useState').mockImplementation((init) => [init, setState]);
+      
+          const submitButton = screen.getByTestId("submit-button");
+          fireEvent.click(submitButton);
+
+          expect(setState).toHaveBeenCalledWith(['New Todo']);
+          */
+          /*
+          const handleClick = jest.fn();
+          render(<TodoListView />);
+          const submitButton = screen.getByTestId("submit-button");
+          fireEvent.click(submitButton);
+          expect(handleClick).toBeCalled();
+          */
         });
-        // it("add a new element to the todos state", () => {
-        //     const { todos } = TodoListView();
-        //     // const todosLength = todos.length;
-        //     render(<TodoListView />);
-        //     const addButton = screen.getByTestId("submit-button");
-        //     fireEvent.click(addButton);
-        //     expect(todos).toContain()
-        //   });
+        it("should be visible the remove button next to the todo item", () => {
+          render(<TodoListView />);
+          const inputElement = screen.getByTestId('todo-input');
+          const submitButton = screen.getByTestId("submit-button");
+
+          fireEvent.change(inputElement, { target: { value: 'New Todo Item' } });
+          fireEvent.click(submitButton);
+
+          const removeButton = screen.getByText("Remove");
+
+          expect(removeButton).toBeInTheDocument();
+        });
     })
 });
